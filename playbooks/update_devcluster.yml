@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Update apt cache (apt update)
+      apt:
+        update_cache: yes
+    
+    - name: Upgrade all packages to the latest version
+      apt:
+        name: "*"
+        state: latest
+    
+    - name: Remove useless packages from the cache
+      apt:
+        autoclean: yes
+    
+    - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes
