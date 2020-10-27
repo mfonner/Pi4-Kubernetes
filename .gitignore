@@ -38,4 +38,4 @@ Thumbs.db
 .swp
 
 # Ansible vault file
-./playbooks/vars/restic.yml
+restic.yml
