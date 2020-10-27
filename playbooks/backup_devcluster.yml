@@ -1,0 +1,13 @@
+---
+- hosts: devcluster 
+  become: True
+  serial: 1
+  vars_files: 
+    - vars/restic.yml
+
+  tasks:
+
+    - name: Backup cluster
+      shell: |
+        export RESTIC_PASSWORD={{ vault_pass }} 
+        sudo -E -u restic /home/restic/bin/restic --exclude={/dev,/media,/mnt,/proc,/run,/sys,/tmp,/var/tmp} -r /mnt/devcluster_storage/backups/ backup -x /

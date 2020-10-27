@@ -7,10 +7,12 @@
       apt:
         update_cache: yes
     
-    - name: Upgrade all packages to the latest version
+    - name: Upgrade all packages to the latest version (full-upgrade)
       apt:
-        name: "*"
-        state: latest
+        # Raspberry Pi OS recommends doing a 'apt full-upgrade' instead of just an
+        # 'apt upgrade'
+        # https://www.raspberrypi.org/documentation/raspbian/updating.md
+        upgrade: full
     
     - name: Remove useless packages from the cache
       apt:

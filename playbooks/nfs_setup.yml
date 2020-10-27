@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become: True
+
+  tasks:
+
+    - name: Mount devcluster share
+      mount:
+        path: /mnt/devcluster_storage
+        src: 192.168.1.54:/mnt/devcluster_storage
+        fstype: nfs
+        opts: auto,_netdev
+        state: mounted
